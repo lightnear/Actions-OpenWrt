@@ -92,7 +92,7 @@ jobs:
           chmod +x $GITHUB_WORKSPACE/scripts/*.sh
           cd openwrt
           $GITHUB_WORKSPACE/scripts/$DIY_SH
-          $GITHUB_WORKSPACE/scripts/preset-clash-core.sh amd64
+          $GITHUB_WORKSPACE/scripts/preset_clash_core.sh amd64
           make defconfig
 
       - name: Download package
