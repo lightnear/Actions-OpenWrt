@@ -22,7 +22,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/x86_64_GDQ.config
+  CONFIG_FILE: config/x86_64_Standard.config
   DIY_SH: lean_openwrt.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
@@ -163,7 +163,7 @@ jobs:
         id: tag
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         run: |
-          echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")_高大全"
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M") 标准版"
           touch release.txt
           [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
           [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
