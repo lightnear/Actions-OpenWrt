@@ -88,7 +88,9 @@ jobs:
           chmod +x scripts/*.sh
           cd openwrt
           $GITHUB_WORKSPACE/$DIY_SH
+          cat .config
           make defconfig
+          cat .config
 
       - name: Download package
         id: package
@@ -158,8 +160,9 @@ jobs:
         id: tag
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         run: |
-          echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")标准版"
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")-Standard"
           touch release.txt
+          echo '**标准版**'' >> release.txt
           echo "默认用户名：root" >> release.txt
           echo "默认密码：password" >> release.txt
           echo "默认IP：10.1.1.2" >> release.txt
