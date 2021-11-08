@@ -18,4 +18,4 @@ sed -i 's/255.255.255.0/255.255.0.0/g' package/base-files/files/bin/config_gener
 # sed -i "/CYXluq4wUazHjmCDBCqXF/d" package/lean/default-settings/files/zzz-default-settings
 
 # banner
-cp -f scripts/banner package/base-files/files/etc/banner
+cp -f ../scripts/banner package/base-files/files/etc/banner
