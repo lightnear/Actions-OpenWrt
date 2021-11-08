@@ -61,12 +61,15 @@ jobs:
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           sudo timedatectl set-timezone "$TZ"
-          df -hT
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
 
       - name: Clone source code
+        working-directory: /workdir
         run: |
           df -hT $PWD
           git clone $REPO_URL -b $REPO_BRANCH openwrt
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
       - name: Load custom feeds
         run: |
@@ -88,9 +91,8 @@ jobs:
           chmod +x scripts/*.sh
           cd openwrt
           $GITHUB_WORKSPACE/$DIY_SH
-          cat .config
+          cp -f $GITHUB_WORKSPACE/scripts/banner package/base-files/files/etc/banner
           make defconfig
-          cat .config
 
       - name: Download package
         id: package
