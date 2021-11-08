@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: build openwrt x86_64 GDQ
+name: build openwrt x86_64 standard
 
 on:
   repository_dispatch:
@@ -22,8 +22,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/x86_64_Standard.config
-  DIY_SH: lean_openwrt.sh
+  CONFIG_FILE: config/x86_64_standard.config
+  DIY_SH: scripts/customizer.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -92,7 +92,6 @@ jobs:
           chmod +x $GITHUB_WORKSPACE/scripts/*.sh
           cd openwrt
           $GITHUB_WORKSPACE/scripts/$DIY_SH
-          $GITHUB_WORKSPACE/scripts/preset_clash_core.sh amd64
           make defconfig
 
       - name: Download package
@@ -165,6 +164,9 @@ jobs:
         run: |
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")标准版"
           touch release.txt
+          echo "默认用户名：root" >> release.txt
+          echo "默认密码：password" >> release.txt
+          echo "默认IP：10.1.1.2" >> release.txt
           [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
           [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
           echo "::set-output name=status::success"
