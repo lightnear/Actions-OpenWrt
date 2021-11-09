@@ -22,8 +22,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/x86_64_standard.config
-  DIY_SH: scripts/customizer.sh
+  CONFIG_FILE: "config/x86_64_standard.config"
+  DIY_SH: "scripts/customizer.sh"
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
