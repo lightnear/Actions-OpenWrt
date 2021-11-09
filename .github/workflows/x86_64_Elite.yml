@@ -91,8 +91,10 @@ jobs:
           [ -e scripts/banner ] && cp -f scripts/banner openwrt/package/base-files/files/etc/banner
           chmod +x scripts/*.sh
           cd openwrt
+          cat .config
           $GITHUB_WORKSPACE/$DIY_SH
           make defconfig
+          cat .config
 
       - name: Download package
         id: package
