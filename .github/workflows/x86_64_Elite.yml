@@ -164,7 +164,7 @@ jobs:
         run: |
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")-Elite"
           touch release.txt
-          echo '**精简版**'' >> release.txt
+          echo '**精简版**' >> release.txt
           echo "默认用户名：root" >> release.txt
           echo "默认密码：password" >> release.txt
           echo "默认IP：10.1.1.2" >> release.txt
