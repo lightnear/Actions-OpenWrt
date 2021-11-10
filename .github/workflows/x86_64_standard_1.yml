@@ -86,11 +86,6 @@ jobs:
 
       - name: Load custom configuration
         run: |
-          echo $PWD
-          ls -l
-          ls -l config
-          echo $CONFIG_FILE
-          ls -l $CONFIG_FILE
           [ -e files ] && mv files openwrt/files
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
           [ -e scripts/banner ] && cp -f scripts/banner openwrt/package/base-files/files/etc/banner
