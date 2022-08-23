@@ -12,11 +12,12 @@ name: build openwrt x86_64 standard
 
 on:
   repository_dispatch:
+    types: [on-source-update]
   push:
     branches:
       - main
-  schedule:
-    - cron: 0 1 1 * * # every month on 1st at 1am
+  # schedule:
+  #   - cron: 0 1 1 * * # every month on 1st at 1am
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
